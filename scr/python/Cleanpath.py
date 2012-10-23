@@ -32,6 +32,7 @@ def getReplaceChar(char):
 		return charDict[char]
 	else:
 		return char
+		#
 	
 def getPath():
 	# Get path(s) of file(s) to examine
