@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # encoding: UTF-8
+
+#Testcomment
 	
 charDict = { '1': '_', u'ö':'o' , u'Ö':'O' , u'å': 'a' , u'Å':'A' , u'ä':'a' , u'Ä':'A' }
 
@@ -23,6 +25,7 @@ def getValidChars():
 	
 def cleanPath(path):
 	cleanedPath = map(getReplaceChar, path)
+    # Remove unicode 
 	return ''.join(filter(isCharValid, cleanedPath))
 
 if __name__ == '__main__':
