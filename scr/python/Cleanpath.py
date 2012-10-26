@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding: UTF-8
 
-#Testcomment
+# Need to check that lenght of file is never below 1 char.
 	
 charDict = { '1': '_', u'ö':'o' , u'Ö':'O' , u'å': 'a' , u'Å':'A' , u'ä':'a' , u'Ä':'A' }
 
@@ -24,6 +24,7 @@ def getValidChars():
 	return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ./"
 	
 def cleanPath(path):
+    # Replace invalid characters
 	cleanedPath = map(getReplaceChar, path)
     # Remove unicode 
 	return ''.join(filter(isCharValid, cleanedPath))
