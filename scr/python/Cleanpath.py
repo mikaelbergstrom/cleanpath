@@ -6,7 +6,7 @@
 charDict = { '1': '_', u'ö':'o' , u'Ö':'O' , u'å': 'a' , u'Å':'A' , u'ä':'a' , u'Ä':'A' }
 
 def getPath():
-	return u"/Volumes/Data/2öfile1.jpg"
+	return raw_input('Please enter path:').decode('utf-8')
 	
 def getReplaceChar(char):
 	if char in charDict.keys():
@@ -26,8 +26,8 @@ def getValidChars():
 def cleanPath(path):
     # Replace invalid characters
 	cleanedPath = map(getReplaceChar, path)
-    # Remove unicode 
+    # Remove invalid characters 
 	return ''.join(filter(isCharValid, cleanedPath))
 
 if __name__ == '__main__':
-	print( "Cleaned Path: " + cleanInvalidPath() )
+	print('Cleaned Path: ' + cleanPath(getPath()))
