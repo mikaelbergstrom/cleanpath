@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding: UTF-8
 
-# Need to check that lenght of file is never below 1 char..
+# Need to check that lenght of file is never below 1 char.
 	
 charDict = { '1': '_', u'ö':'o' , u'Ö':'O' , u'å': 'a' , u'Å':'A' , u'ä':'a' , u'Ä':'A' }
 
