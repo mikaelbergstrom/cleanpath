@@ -1,12 +1,16 @@
 #!/usr/bin/python
 # encoding: UTF-8
+import sys
 
 # Need to check that lenght of file is never below 1 char.
 	
 charDict = { '1': '_', u'ö':'o' , u'Ö':'O' , u'å': 'a' , u'Å':'A' , u'ä':'a' , u'Ä':'A' }
 
 def getPath():
-	return raw_input('Please enter path:').decode('utf-8')
+	if len(sys.argv) > 1:
+		return sys.argv[1].decode('utf-8')
+	else:
+		return raw_input('Please enter path:').decode('utf-8')
 	
 def getReplaceChar(char):
 	if char in charDict.keys():
