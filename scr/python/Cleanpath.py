@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # encoding: UTF-8
 import sys
+import os, glob
 
+myFiles=[]
 # Need to check that lenght of file is never below 1 char.
 	
 charDict = { '1': '_', u'ö':'o' , u'Ö':'O' , u'å': 'a' , u'Å':'A' , u'ä':'a' , u'Ä':'A' }
@@ -25,13 +27,26 @@ def isCharValid(char):
 		return False		
 
 def getValidChars():
-	return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ./"
+	return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ./_023456789"
+	# return [a-z,A-Z,0-9]
+	
 	
 def cleanPath(path):
     # Replace invalid characters
 	cleanedPath = map(getReplaceChar, path)
     # Remove invalid characters 
 	return ''.join(filter(isCharValid, cleanedPath))
+	
+def scandirs(fixedPath):
+	for currentFile in glob.glob( os.path.join(fixedPath, '*') ):
+		if os.path.isdir(currentFile):
+			#os.rename(currentFile, cleanPath(currentFile))
+			scandirs(currentFile)
+			#print currentFile
+		myFiles.append(currentFile)
+		print currentFile + ":" + cleanPath(currentFile)
+		os.rename(currentFile, cleanPath(currentFile))
 
 if __name__ == '__main__':
-	print('Cleaned Path: ' + cleanPath(getPath()))
+	scandirs('/Users/klaag/cleanpath/scr/python/filenames/')
+	#print('Cleaned Path: ' + cleanPath(getPath()))
