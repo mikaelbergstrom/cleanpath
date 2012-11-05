@@ -40,12 +40,15 @@ def cleanPath(path):
 def scandirs(fixedPath):
 	for currentFile in glob.glob( os.path.join(fixedPath, '*') ):
 		if os.path.isdir(currentFile):
-			#os.rename(currentFile, cleanPath(currentFile))
-			scandirs(currentFile)
-			#print currentFile
+			print "currentFileD:" + currentFile + ":" + cleanPath(currentFile)
+			os.rename(currentFile, cleanPath(currentFile))
+			scandirs(cleanPath(currentFile))
 		myFiles.append(currentFile)
-		print currentFile + ":" + cleanPath(currentFile)
-		os.rename(currentFile, cleanPath(currentFile))
+		if os.path.isdir(currentFile):
+			print ""
+		else:
+			print "currentFile:" + currentFile + ":" + cleanPath(currentFile)
+			os.rename(currentFile, cleanPath(currentFile))
 
 if __name__ == '__main__':
 	scandirs('/Users/klaag/cleanpath/scr/python/filenames/')
