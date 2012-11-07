@@ -37,19 +37,28 @@ def cleanPath(path):
     # Remove invalid characters 
 	return ''.join(filter(isCharValid, cleanedPath))
 	
-def scandirs(fixedPath):
-	for currentFile in glob.glob( os.path.join(fixedPath, '*') ):
+def cleanDirectoryPaths(rootDirectory):
+	for currentFile in glob.glob( os.path.join(rootDirectory, '*') ):
 		if os.path.isdir(currentFile):
-			print "currentFileD:" + currentFile + ":" + cleanPath(currentFile)
+			print "---> renamed currentDir: " + currentFile + " to: " + cleanPath(currentFile)	
 			os.rename(currentFile, cleanPath(currentFile))
-			scandirs(cleanPath(currentFile))
-		myFiles.append(currentFile)
+			print "---> renamed OK!"
+			cleanDirectoryPaths(cleanPath(currentFile))
+
+def cleanPaths(rootDirectory):
+	for currentFile in glob.glob( os.path.join(rootDirectory, '*') ):
 		if os.path.isdir(currentFile):
-			print ""
-		else:
-			print "currentFile:" + currentFile + ":" + cleanPath(currentFile)
-			os.rename(currentFile, cleanPath(currentFile))
+			cleanPaths(currentFile)	
+		print "---> renamed currentFile: " + currentFile + " to: " + cleanPath(currentFile)	
+		os.rename(currentFile, cleanPath(currentFile))
+		print "---> renamed OK!"
 
 if __name__ == '__main__':
-	scandirs('/Users/klaag/cleanpath/scr/python/filenames/')
-	#print('Cleaned Path: ' + cleanPath(getPath()))
+	# Mikaels root dir
+	rootDirectory = '/Projects/cleanpath/scr/python/filenames/'
+	# Kristers root dir
+	# rootDirectory = '/Users/klaag/cleanpath/scr/python/filenames/'	
+	
+	# First only clean all directories
+	cleanDirectoryPaths(rootDirectory)
+	cleanPaths(rootDirectory)
