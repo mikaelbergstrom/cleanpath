@@ -40,6 +40,7 @@ def cleanPath(path):
 def cleanDirectoryPaths(rootDirectory):
 	for currentFile in glob.glob( os.path.join(rootDirectory, '*') ):
 		if os.path.isdir(currentFile):
+<<<<<<< HEAD
 			print "---> renamed currentDir: " + currentFile + " to: " + cleanPath(currentFile)	
 			os.rename(currentFile, cleanPath(currentFile))
 			print "---> renamed OK!"
@@ -52,6 +53,17 @@ def cleanPaths(rootDirectory):
 		print "---> renamed currentFile: " + currentFile + " to: " + cleanPath(currentFile)	
 		os.rename(currentFile, cleanPath(currentFile))
 		print "---> renamed OK!"
+=======
+			print "currentFileD:" + currentFile + ":" + cleanPath(currentFile)
+			#os.rename(currentFile, cleanPath(currentFile))
+			scandirs(cleanPath(currentFile))
+		myFiles.append(currentFile)
+		if os.path.isdir(currentFile):
+			print ""
+		else:
+			print "currentFile:" + currentFile + ":" + cleanPath(currentFile)
+			#os.rename(currentFile, cleanPath(currentFile))
+>>>>>>> commented out renaming
 
 if __name__ == '__main__':
 	# Mikaels root dir
