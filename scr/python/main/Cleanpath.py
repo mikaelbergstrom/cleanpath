@@ -33,9 +33,9 @@ def getValidChars():
 	
 def cleanPath(path):
     # Replace invalid characters
-	cleanedPath = map(getReplaceChar, path)
+	pathWithReplacedChar = map(getReplaceChar, path)
     # Remove invalid characters 
-	return ''.join(filter(isCharValid, cleanedPath))
+	return ''.join(filter(isCharValid, pathWithReplacedChar))
 	
 def cleanDirectoryPaths(rootDirectory):
 	for currentFile in glob.glob( os.path.join(rootDirectory, '*') ):
